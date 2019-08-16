@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  database:
+    image: postgres
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    stdin_open: true
+    tty: true
+    env_file:
+      - ${PWD}/postgres/postgres.env
+
+volumes:
+  db-data:
+
+networks:
+  default:
+    external:
+      name: postgres-network
